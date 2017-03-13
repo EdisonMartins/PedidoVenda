@@ -1,0 +1,145 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro Usuário</ui:define>
+
+	<ui:define name="corpo">
+
+
+		<!-- Utilizado para executar algum método antes de renderizar a página -->
+		<f:metadata>
+			<!-- Fix do Bug que chama várias vezes o listener -->
+			<f:viewParam name="usuario" value="#{cadastroUsuarioBean.usuario}"
+				converter="#{usuarioConverter}" />
+			<f:event listener="#{cadastroUsuarioBean.inicializar()}"
+				type="preRenderView" />
+		</f:metadata>
+
+
+		<h:form>
+
+			<h1>Novo Usuário</h1>
+
+
+			<p:toolbar style="margin-top: 20px;">
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/usuarios/CadastroUsuario" />
+					<p:commandButton id="botaoSalvar" value="Salvar" update="@form"
+						action="#{cadastroUsuarioBean.salvar()}" />
+
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" outcome="/usuarios/PesquisaUsuarios" />
+
+				</p:toolbarGroup>
+
+
+			</p:toolbar>
+
+
+			<p:messages autoUpdate="true" closable="true" />
+
+
+
+			<p:panelGrid columns="2" id="painel"
+				style="width:100%; margin-top:20px;" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="50" maxlength="80"
+					value="#{cadastroUsuarioBean.usuario.nome}" />
+
+				<p:outputLabel value="E-mail" for="email" />
+				<p:inputText id="email" size="50" maxlength="80"
+					value="#{cadastroUsuarioBean.usuario.email}" />
+
+				<p:outputLabel value="Senha" for="senha" />
+				<p:password id="senha" size="30" maxlength="60" 
+					required="true" feedback="true" weakLabel="Fraca" goodLabel="Boa"
+					strongLabel="Forte" promptLabel="Informe a senha" inline="true" match="confirmacaoSenha" redisplay="true"
+					value="#{cadastroUsuarioBean.usuario.senha}" />
+				<p:outputLabel value="Confirme a senha" for="confirmacaoSenha" />
+	<p:password id="confirmacaoSenha" required="true" />	
+
+
+
+			</p:panelGrid>
+
+
+			<p:panelGrid columns="2" id="painel2"
+				style="width:100%; margin-top:20px;" columnClasses="rotulo, campo">
+
+				<p:selectOneMenu converter="#{grupoConverter}"
+					value="#{cadastroUsuarioBean.grupo}">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+					<f:selectItems value="#{cadastroUsuarioBean.gruposRaizes}"
+						var="grupo" itemLabel="#{grupo.nome}" itemValue="#{grupo}" />
+
+				</p:selectOneMenu>
+
+				<p:commandButton value="Adicionar Grupo"
+					actionListener="#{cadastroUsuarioBean.adicionarGrupo()}"
+					update="gruposTable" />
+
+			</p:panelGrid>
+
+
+			<p:dataTable id="gruposTable"
+				value="#{cadastroUsuarioBean.gruposAdicionados}" var="grupo"
+				style="margin-top:20px;" emptyMessage="Nenhum grupo encontrado."
+				rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{grupo.nome}" />
+
+				</p:column>
+
+
+				<p:column headerText="Descrição">
+					<h:outputText value="#{grupo.descricao}" />
+
+				</p:column>
+
+
+
+				<p:column style="text-align:center; width:45px;">
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						action="#{cadastroUsuarioBean.excluirGrupo()}"
+						update="gruposTable">
+
+						<f:setPropertyActionListener
+							target="#{cadastroUsuarioBean.grupoSelecionado}" value="#{grupo}" />
+
+					</p:commandButton>
+
+
+				</p:column>
+
+
+
+
+
+
+
+
+			</p:dataTable>
+
+
+
+
+
+
+
+
+
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>
+

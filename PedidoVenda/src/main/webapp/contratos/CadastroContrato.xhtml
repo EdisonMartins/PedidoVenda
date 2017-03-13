@@ -1,0 +1,116 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro Contrato</ui:define>
+
+	<ui:define name="corpo">
+
+		<h1>Cadastro de contrato de treinamentos</h1>
+
+
+		<p:tabView style="margin-top: 20px;">
+			<p:tab title="Dados principais">
+
+				<p:panelGrid columns="2" id="painel"
+					style="width:100%; margin-top:20px;" columnClasses="rotulo, campo">
+
+					<p:outputLabel value="Razão Social" for="razaoSocial" />
+					<p:inputText id="razaoSocial" size="45" maxlength="80" />
+
+					<p:outputLabel value="CNPJ" for="cnpj" />
+					<p:inputMask id="cnpj" mask="99.999.999/9999-99"></p:inputMask>
+
+					<p:outputLabel value="Cidade do contrato" for="cidadeContrato" />
+					<p:inputText id="cidadeContrato" size="30" maxlength="80" />
+
+					<p:outputLabel value="Modalidade" for="modalidade" />
+					<h:panelGroup>
+						<p:selectOneRadio id="modalidade" value="" required="true"
+							layout="custom">
+							<f:selectItem itemValue="EAD" />
+							<f:selectItem itemValue="PRESENCIAL" />
+						</p:selectOneRadio>
+
+						<h:panelGrid columns="4">
+							<p:radioButton id="opt1" for="modalidade" itemIndex="0" />
+							<p:outputLabel value="EAD" for="opt1" />
+
+							<p:radioButton id="opt2" for="modalidade" itemIndex="1"
+								style="margin-left: 20px;" />
+							<p:outputLabel value="Presencial" for="opt2" />
+						</h:panelGrid>
+					</h:panelGroup>
+
+
+
+				</p:panelGrid>
+
+			</p:tab>
+			<p:tab title="Contrato">
+
+				<p:panelGrid columns="2" id="painel"
+					style="width:100%; margin-top:20px;" columnClasses="rotulo, campo">
+
+					<p:outputLabel value="Data do contrato" for="data" />
+					<p:calendar id="data" size="7">
+						<f:convertDateTime pattern="dd/MM//yy" />
+					</p:calendar>
+
+
+					<p:outputLabel value="Valor do contrato" for="valorContrato" />
+					<p:inputText id="valorContrato" size="7" maxlength="10"
+						styleClass="moeda" />
+
+
+					<p:outputLabel value="Método de Pagamento" for="metodoPagamento" />
+					<p:selectOneMenu id="metodoPagamento" style="width:150px;">
+						<f:selectItem itemLabel="Selecione" />
+					</p:selectOneMenu>
+
+
+					<p:outputLabel value="Forma de pagamento" for="formaPagamento" />
+					<p:selectOneMenu id="formaPagamento" style="width:150px;">
+						<f:selectItem itemLabel="Selecione" />
+					</p:selectOneMenu>
+
+
+
+
+				</p:panelGrid>
+
+
+			</p:tab>
+			<p:tab title="Cursos">
+				<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+					<p:selectBooleanCheckbox value="" />
+					<h:outputText value="Fundamentos Java e Orientação a Objetos" />
+
+					<p:selectBooleanCheckbox value="" />
+					<h:outputText value="Devenvolvimento Web com JSF2" />
+
+					<p:selectBooleanCheckbox value="" />
+					<h:outputText value="Persistência de Dados com JPA 2 e Hibernate" />
+
+					<p:selectBooleanCheckbox value="" />
+					<h:outputText value="Gerenciamento Ágil de Projetos com Scrum" />
+
+
+
+
+				</h:panelGrid>
+			</p:tab>
+		</p:tabView>
+
+
+
+
+
+	</ui:define>
+
+
+</ui:composition>
+

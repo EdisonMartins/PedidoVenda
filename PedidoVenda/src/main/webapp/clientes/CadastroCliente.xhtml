@@ -1,0 +1,185 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro Cliente</ui:define>
+
+	<ui:define name="corpo">
+
+
+
+
+
+		<!-- Utilizado para executar algum método antes de renderizar a página -->
+		<f:metadata>
+			<!-- Fix do Bug que chama várias vezes o listener -->
+			<f:viewParam name="cliente" value="#{cadastroClienteBean.cliente}"
+				converter="#{clienteConverter}" />
+		</f:metadata>
+
+
+
+
+		<h:form id="frmCliente">
+			<h1>Novo Cliente</h1>
+			<p:messages autoUpdate="true" closable="true" />
+
+
+			<p:toolbar style="margin-top: 20px;">
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/clientes/CadastroCliente" />
+					<p:commandButton id="botaoSalvar" value="Salvar"
+						action="#{cadastroClienteBean.salvar()}"
+						update="frmCliente,:formEndereco" />
+
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+				<p:commandButton value="Enviar cadastro por e-mail" 
+						   	 action="#{envioClienteEmailBean.enviarDadosDoCliente(cadastroClienteBean.cliente)}"
+  					     	 process="@this" 
+  					     	 disabled="#{not cadastroClienteBean.cliente.existente}" />
+
+			<p:separator />
+					<p:button value="Pesquisa" outcome="/clientes/PesquisaClientes" />
+
+				</p:toolbarGroup>
+
+
+			</p:toolbar>
+
+
+
+			<p:panelGrid columns="2" id="painel"
+				style="width:100%; margin-top:20px;" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="60" maxlength="80"
+					value="#{cadastroClienteBean.cliente.nome}" />
+
+
+
+
+				<p:outputLabel for="tipo" value="Tipo" />
+				<p:selectOneRadio id="tipo"
+					value="#{cadastroClienteBean.cliente.tipo}">
+					<f:selectItems value="#{cadastroClienteBean.tiposPessoa}"
+						var="tipo" itemValue="#{tipo.value}" itemLabel="#{tipo.label}" />
+				</p:selectOneRadio>
+
+
+				<p:outputLabel value="CNPJ" for="cnpj" />
+				<p:inputText id="cnpj" size="20" maxlength="18"
+					value="#{cadastroClienteBean.cliente.documentoReceitaFederal}" />
+
+				<p:outputLabel value="E-mail" for="email" />
+				<p:inputText id="email" size="40" maxlength="60"
+					value="#{cadastroClienteBean.cliente.email}" />
+
+
+
+
+			</p:panelGrid>
+
+
+
+
+			<p:commandButton value="Adicionar Endereço"
+				onclick="PF('enderecoDialog').show();"
+				style="margin-top: 20px; width:160px;"
+				disabled="#{cadastroClienteBean.cliente.naoExistente}" />
+
+
+			<p:dataTable id="enderecosTable"
+				value="#{cadastroClienteBean.cliente.enderecos}" var="endereco"
+				style="margin-top:20px;" emptyMessage="Nenhum endereço encontrado."
+				rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Logradouro" style=" width:400px;">
+					<h:outputText value="#{endereco.logradouro}" />
+
+				</p:column>
+
+				<p:column headerText="Número" style=" width:70px;">
+					<h:outputText value="#{endereco.numero}" />
+
+				</p:column>
+
+				<p:column headerText="Complemento" style=" width:150px;">
+					<h:outputText value="#{endereco.complemento}" />
+
+				</p:column>
+
+				<p:column headerText="CEP" style=" width:30px; text-align:center">
+					<h:outputText value="#{endereco.cep}" />
+
+				</p:column>
+
+
+				<p:column headerText="Cidade/UF" style=" width:60px;">
+					<h:outputText value="#{endereco.cidade}" />
+
+				</p:column>
+
+
+				<p:column style="text-align:center; width:40px;">
+					<p:button icon="ui-icon-pencil" title="Editar" />
+
+					<!-- inicio botão de exclusao -->
+					<p:commandButton title="Excluir" icon="ui-icon-trash"
+						styleClass="btn btn-danger small" process="@this"
+						oncomplete="PF('confirmacaoExclusao').show(); return false;"
+						update=":frmCliente:confirmExclusaoDialog">
+
+						<f:setPropertyActionListener
+							target="#{cadastroClienteBean.endereco}"
+							value="#{endereco}" />
+					</p:commandButton>
+
+
+					<!-- FIM botão de exclusao -->
+
+
+				</p:column>
+
+
+			</p:dataTable>
+
+			<!-- Dialogs fica abaixo do DataTable -->
+			<p:confirmDialog id="confirmExclusaoDialog" width="500"
+				header="Exclusão de Endereço"
+				message="Tem certeza que deseja excluir o endereço?"
+				widgetVar="confirmacaoExclusao">
+
+
+				<h:panelGrid columns="2" style="margin: 0 auto;" dir="rtl">
+
+					<p:button value="Não"
+						onclick="PF('confirmacaoExclusao').hide(); return false;"
+						styleClass="btn btn-default" />
+					<p:commandButton value="Sim" styleClass="btn btn-danger"
+						action="#{cadastroClienteBean.excluirEndereco()}" process="@this"
+						update=":frmCliente:enderecosTable"
+						oncomplete="PF('confirmacaoExclusao').hide();  return false;" />
+
+
+				</h:panelGrid>
+
+
+			</p:confirmDialog>
+
+		</h:form>
+
+		<ui:include src="/WEB-INF/template/clientes/AdicionarEndereco.xhtml" />
+
+
+
+	</ui:define>
+
+
+</ui:composition>
+

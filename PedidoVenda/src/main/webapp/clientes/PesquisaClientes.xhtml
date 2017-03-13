@@ -1,0 +1,155 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa de Clientes</ui:define>
+
+	<ui:define name="corpo">
+
+		<!-- Utilizado para executar algum método antes de renderizar a página -->
+		<f:metadata>
+			<!-- Fix do Bug que chama várias vezes o listener -->
+			<f:viewParam name="dummy" />
+			<f:event listener="#{pesquisaClientesBean.inicializar()}"
+				type="preRenderView" />
+		</f:metadata>
+
+		<h:form id="pesquisaClientesForm">
+
+			<h1>Pesquisa de Clientes</h1>
+
+
+			<p:toolbar style="margin-top: 20px;">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" update="clientesTable" />
+
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" outcome="/clientes/CadastroCliente" />
+
+				</p:toolbarGroup>
+
+
+			</p:toolbar>
+
+
+			<p:messages autoUpdate="true" closable="true" />
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top: 20px;" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="CPF/CNPJ" />
+				<p:inputText size="15"
+					value="#{pesquisaClientesBean.filtro.documentoReceitaFederal}" />
+
+				<p:outputLabel value="Nome" />
+				<p:inputText size="40" value="#{pesquisaClientesBean.filtro.nome}" />
+
+
+
+			</p:panelGrid>
+
+
+			<p:dataTable id="clientesTable" value="#{pesquisaClientesBean.model}"
+				var="cliente" lazy="true" style="margin-top:20px;"
+				emptyMessage="Nenhum cliente encontrado." rows="20" paginator="true"
+				paginatorAlwaysVisible="false" paginatorPosition="bottom">
+
+				<p:column headerText="Nome" width="100px">
+					<h:outputText value="#{cliente.nome}" />
+
+				</p:column>
+
+
+				<p:column headerText="Tipo" style="text-align:center; width:100px;">
+					<h:outputText value="#{cliente.tipo.nome}" />
+
+				</p:column>
+
+				<p:column headerText="CPF/CNPJ" style="width:130px;">
+					<h:outputText value="#{cliente.documentoReceitaFederal}" />
+
+				</p:column>
+
+				<p:column style="text-align:center; width:110px;">
+
+					<p:button icon="ui-icon-pencil" title="Editar"
+						outcome="/clientes/CadastroCliente">
+						<f:param name="cliente" value="#{cliente.id}" />
+					</p:button>
+
+
+					<ui:remove>
+						<p:commandButton icon="ui-icon-trash" title="Excluir"
+							style="margin-left:10px;">
+
+							<p:confirm header="Exclusão de Cliente"
+								message="Tem certeza que deseja excluir o cliente?"
+								icon="ui-icon-alert" />
+
+						</p:commandButton>
+					</ui:remove>
+
+					<!-- inicio botão de exclusao -->
+					<p:commandButton title="Excluir" icon="ui-icon-trash"
+						style="margin-left:10px;" process="@this"
+						oncomplete="PF('confirmacaoExclusao').show(); return false;"
+						update=":pesquisaClientesForm:confirmExclusaoDialog">
+
+						<f:setPropertyActionListener
+							target="#{pesquisaClientesBean.clienteSelecionado}"
+							value="#{cliente}" />
+					</p:commandButton>
+
+
+
+				</p:column>
+			</p:dataTable>
+
+
+			<!-- Dialogs fica abaixo do DataTable -->
+			<p:confirmDialog id="confirmExclusaoDialog" width="500"
+				header="Exclusão de Cliente"
+				message="Tem certeza que deseja excluir o Cliente "
+				widgetVar="confirmacaoExclusao">
+
+
+				<f:facet name="message">
+					<h:outputText value="Tem certeza que deseja excluir o Cliente " />
+					<h:outputText
+						value="#{pesquisaClientesBean.clienteSelecionado.nome}" />
+					<h:outputText value="?" />
+				</f:facet>
+
+
+
+
+				<h:panelGrid columns="2" style="margin: 0 auto;" dir="rtl">
+
+					<p:button value="Não"
+						onclick="PF('confirmacaoExclusao').hide(); return false;" />
+					<p:commandButton value="Sim"
+						action="#{pesquisaClientesBean.excluir()}" process="@this"
+						update=":pesquisaClientesForm:clientesTable"
+						oncomplete="PF('confirmacaoExclusao').hide();  return false;" />
+
+
+				</h:panelGrid>
+
+
+			</p:confirmDialog>
+
+
+
+		</h:form>
+
+
+
+	</ui:define>
+
+
+</ui:composition>
+

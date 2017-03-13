@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form id="formEndereco">
+		<p:dialog header="Adicionar Endereço" modal="true" resizable="false"
+			widgetVar="enderecoDialog">
+
+
+			
+
+			<p:panelGrid columns="2" style="width: 100%;"
+				columnClasses="rotulo, campo, rotulo, campo">
+
+				<p:outputLabel value="Logradouro" for="logradouro" />
+				<p:inputText id="logradouro" size="40" maxlength="80"
+					style="width:98%;"
+					value="#{cadastroClienteBean.endereco.logradouro}" />
+
+				<p:outputLabel value="Número" for="numero" />
+				<p:inputText id="numero" size="10" maxlength="80"
+					value="#{cadastroClienteBean.endereco.numero}" />
+
+				<p:outputLabel value="Complemento" for="complemento" />
+				<p:inputText id="complemento" size="30" maxlength="80"
+					value="#{cadastroClienteBean.endereco.complemento}" />
+
+				<p:outputLabel value="CEP" for="cep" />
+				<p:inputText id="cep" size="10" maxlength="80"
+					value="#{cadastroClienteBean.endereco.cep}" />
+
+				<p:outputLabel value="Cidade" for="cidade" />
+				<h:panelGroup>
+					<p:inputText id="cidade" size="30" maxlength="80"
+						value="#{cadastroClienteBean.endereco.cidade}" />
+
+					<p:outputLabel value="UF   " for="uf" style="margin-left: 20px;" />
+					<p:inputText id="uf" size="5" maxlength="2"
+						style="margin-left: 10px;"
+						value="#{cadastroClienteBean.endereco.uf}" />
+				</h:panelGroup>
+
+				<p:spacer />
+				<p:commandButton value="Incluir"
+					action="#{cadastroClienteBean.incluirEndereco()}"
+					update=":frmCliente:enderecosTable" />
+
+
+			</p:panelGrid>
+
+		</p:dialog>
+
+	</h:form>
+
+
+
+
+</ui:composition>
+
