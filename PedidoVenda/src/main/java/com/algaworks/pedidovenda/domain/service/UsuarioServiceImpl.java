@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 
 import com.algaworks.pedidovenda.domain.model.Grupo;
 import com.algaworks.pedidovenda.domain.model.Usuario;
-import com.algaworks.pedidovenda.domain.model.repository.UsuarioRepository;
+import com.algaworks.pedidovenda.domain.model.repository.Usuarios;
 import com.algaworks.pedidovenda.domain.service.exception.NegocioExceptionImpl;
 
 public class UsuarioServiceImpl implements Serializable, UsuarioService {
@@ -15,7 +15,7 @@ public class UsuarioServiceImpl implements Serializable, UsuarioService {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private UsuarioRepository usuarios;
+	private Usuarios usuarios;
 
 
 	@Transactional

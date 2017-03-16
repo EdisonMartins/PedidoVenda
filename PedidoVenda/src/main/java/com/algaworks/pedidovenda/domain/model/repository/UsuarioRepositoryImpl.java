@@ -18,7 +18,7 @@ import org.hibernate.criterion.Restrictions;
 import com.algaworks.pedidovenda.domain.model.Usuario;
 import com.algaworks.pedidovenda.domain.model.repository.dto.UsuarioFilter;
 
-public class UsuarioRepositoryImpl implements Serializable, UsuarioRepository {
+public class UsuarioRepositoryImpl implements Serializable, Usuarios {
 
 	private static final long serialVersionUID = 1L;
 
