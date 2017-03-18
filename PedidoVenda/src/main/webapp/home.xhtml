@@ -4,14 +4,22 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	
+
 	<ui:define name="titulo">DashBoard</ui:define>
 
 	<ui:define name="corpo">
-	
-	 <br/><br/><br/>Seja bem vindo!<br/><br/><br/>
-	 
-	
+
+		<br />
+		<br />
+		<br />Seja bem vindo!<br />
+		<br />
+		<br />
+
+		<p:chart model="#{graficoPedidosCriadosBean.model}"
+				 type="line"
+		         style="height: 400px;" />
+
+
 	</ui:define>
 
 
