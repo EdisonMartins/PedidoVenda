@@ -51,6 +51,7 @@ public class RelatorioPedidosEmitidosBean implements Serializable {
 		session.doWork(executor);
 		
 		if (executor.isRelatorioGerado()) {
+			//Interrompe o ciclo de vida do JSF
 			facesContext.responseComplete();
 		} else {
 			FacesUtil.addErrorMessage("A execução do relatório não retornou dados.");

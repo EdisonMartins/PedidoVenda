@@ -50,6 +50,7 @@ public class ExecutorRelatorio implements Work {
 				exportador.setParameter(JRExporterParameter.JASPER_PRINT, print);
 
 				response.setContentType("application/pdf");
+				//Força o download do arquivo.
 				response.setHeader("Content-Disposition", "attachment; filename=\"" + this.nomeArquivoSaida + "\"");
 
 				exportador.exportReport();
