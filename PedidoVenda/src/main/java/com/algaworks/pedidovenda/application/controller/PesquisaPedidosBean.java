@@ -9,7 +9,7 @@ import javax.inject.Named;
 import com.algaworks.pedidovenda.application.controller.component.LazyPedidoDataModel;
 import com.algaworks.pedidovenda.application.util.jsf.FacesUtil;
 import com.algaworks.pedidovenda.domain.model.StatusPedido;
-import com.algaworks.pedidovenda.domain.model.repository.PedidoRepository;
+import com.algaworks.pedidovenda.domain.model.repository.Pedidos;
 import com.algaworks.pedidovenda.domain.model.repository.dto.PedidoFilter;
 
 @Named
@@ -24,7 +24,7 @@ public class PesquisaPedidosBean implements Serializable {
 	private LazyPedidoDataModel model;
 	
 	@Inject
-	private PedidoRepository pedidoRep;
+	private Pedidos pedidoRep;
 
 	public PesquisaPedidosBean() {
 		filtro = new PedidoFilter();

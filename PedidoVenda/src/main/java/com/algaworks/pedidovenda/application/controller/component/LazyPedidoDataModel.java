@@ -7,7 +7,7 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import com.algaworks.pedidovenda.domain.model.Pedido;
-import com.algaworks.pedidovenda.domain.model.repository.PedidoRepository;
+import com.algaworks.pedidovenda.domain.model.repository.Pedidos;
 import com.algaworks.pedidovenda.domain.model.repository.dto.PedidoFilter;
 
 public class LazyPedidoDataModel extends LazyDataModel<Pedido> {
@@ -22,9 +22,9 @@ public class LazyPedidoDataModel extends LazyDataModel<Pedido> {
 
 	private List<Pedido> lista;
 
-	private PedidoRepository pedidoRep;
+	private Pedidos pedidoRep;
 
-	public LazyPedidoDataModel(PedidoRepository pedidoRep, PedidoFilter filtro) {
+	public LazyPedidoDataModel(Pedidos pedidoRep, PedidoFilter filtro) {
 		this.pedidoRep = pedidoRep;
 		this.filtro = filtro;
 

@@ -7,14 +7,14 @@ import javax.transaction.Transactional;
 
 import com.algaworks.pedidovenda.domain.model.ItemPedido;
 import com.algaworks.pedidovenda.domain.model.Pedido;
-import com.algaworks.pedidovenda.domain.model.repository.PedidoRepository;
+import com.algaworks.pedidovenda.domain.model.repository.Pedidos;
 
 public class EstoqueServiceImpl implements Serializable, EstoqueService {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private PedidoRepository pedidoRep;
+	private Pedidos pedidoRep;
 
 	@Override
 	@Transactional
