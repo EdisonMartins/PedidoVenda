@@ -13,4 +13,5 @@ public interface Pedidos extends GenericRepository<Pedido>{
 	public List<Pedido> filtrados(PedidoFilter filtro);
 	public int getQuantidadeFiltrados(PedidoFilter filtro);
 	public Map<Date, BigDecimal> valoresTotaisPorData(Integer numeroDeDias, Usuario criadoPor);
+	public Map<Usuario, BigDecimal> valoresTotaisPorVendedor();
 }

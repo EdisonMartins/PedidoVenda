@@ -12,5 +12,7 @@ public interface Usuarios extends GenericRepository<Usuario> {
 	public List<Usuario> filtrados(UsuarioFilter filtro);
 	public int getQuantidadeFiltrados(UsuarioFilter filtro);
 	public List<Usuario> getVendedores();
+	public int calculaQuantidadeDeUsuarios();
+	
 	
 }

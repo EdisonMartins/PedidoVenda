@@ -113,4 +113,12 @@ public class UsuarioRepositoryImpl implements Serializable, Usuarios {
 		return criteria;
 	}
 
+	@Override
+	public int calculaQuantidadeDeUsuarios() {
+		Session session = manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(Usuario.class);
+		criteria.setProjection(Projections.rowCount());
+		return ((Number) criteria.uniqueResult()).intValue();
+	}
+
 }

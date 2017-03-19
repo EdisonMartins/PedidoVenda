@@ -13,6 +13,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
@@ -23,6 +24,7 @@ import com.algaworks.pedidovenda.domain.model.Pedido;
 import com.algaworks.pedidovenda.domain.model.Usuario;
 import com.algaworks.pedidovenda.domain.model.repository.dto.PedidoFilter;
 import com.algaworks.pedidovenda.domain.model.vo.DataValor;
+import com.algaworks.pedidovenda.domain.model.vo.VendedorValor;
 
 public class PedidoDAO extends GenericDAO<Pedido> {
 
@@ -178,6 +180,31 @@ public class PedidoDAO extends GenericDAO<Pedido> {
 		}
 		
 		return mapaInicial;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<VendedorValor>  valoresTotaisPorVendedor(){
+		Session session  = this.getEntityManager().unwrap(Session.class);
+		Criteria criteria = session.createCriteria(Pedido.class);
+		
+		ProjectionList projecoes = Projections.projectionList();
+		
+		/*
+		 * .property("vendedor") - Não é necessário pois o groupProperty já trará o resultado no Select.
+		 * .sum("valorTotal")    - Projeção de Soma na propriedade valorTotal da Classe Pedido.
+		 * .groupProperty("vendedor") - Group By do Sql - Agrupa por Vendedor
+		 * .as("valor") e .as("vendedor") - Necessário para popular o objeto da Classe VendedorValor.
+		 * 
+		 * */
+		
+		
+		//projecoes.add(Projections.property("vendedor").as("vendedor"));
+		projecoes.add(Projections.sum("valorTotal").as("valor"));
+		projecoes.add(Projections.groupProperty("vendedor").as("vendedor"));
+		criteria.setProjection(projecoes);
+
+		List<VendedorValor> valoresPorVendedor = criteria.setResultTransformer(Transformers.aliasToBean(VendedorValor.class)).list();
+		return valoresPorVendedor;
 	}
 	
 	

@@ -54,7 +54,7 @@ public class GraficoPedidosCriadosBean implements Serializable {
         yAxis.setTickInterval("100");
         
 
-        this.model.getAxes().put(AxisType.X, new CategoryAxis("Últimos " + NUMERO_DE_DIAS + "dias"));
+        this.model.getAxes().put(AxisType.X, new CategoryAxis("Últimos " + NUMERO_DE_DIAS + " dias"));
 		
 		
 		adicionarSerie("Todos os pedidos", null);

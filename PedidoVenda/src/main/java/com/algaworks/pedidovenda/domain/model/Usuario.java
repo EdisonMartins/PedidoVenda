@@ -21,7 +21,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Table(name = "usuario")
 @XmlRootElement
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, Comparable<Usuario> {
 	/**
 	 * 
 	 */
@@ -126,6 +126,11 @@ public class Usuario implements Serializable {
 		
 		return valor.toString();
 		
+	}
+
+	@Override
+	public int compareTo(Usuario outroUsuario) {
+		return this.getNome().compareTo(outroUsuario.getNome());
 	}
 
 }

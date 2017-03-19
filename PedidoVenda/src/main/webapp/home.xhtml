@@ -4,15 +4,27 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	
+
 	<f:metadata>
-		<f:viewParam name="dummy"/>
-		<f:event listener="#{graficoPedidosCriadosBean.preRender()}" type="preRenderView"/>
+		<f:viewParam name="dummy" />
+		<f:event listener="#{graficoPedidosCriadosBean.preRender()}"
+			type="preRenderView" />
+		<f:event listener="#{graficoVendedoresBean.preRender()}"
+			type="preRenderView" />
 	</f:metadata>
 
 	<ui:define name="titulo">DashBoard</ui:define>
 
 	<ui:define name="corpo">
+
+		<script>
+		function ext() {
+			this.cfg.seriesDefaults.rendererOptions.dataLabelFormatString = '%.2f';
+		}
+
+		
+</script>
+
 
 		<br />
 		<br />
@@ -20,12 +32,18 @@
 		<br />
 		<br />
 
-		<p:chart model="#{graficoPedidosCriadosBean.model}"
-				 type="line"
-		         style="height: 400px;"/>
+		<p:chart model="#{graficoPedidosCriadosBean.model}" type="line"
+			style="height: 400px;" />
+
+
+
+		<p:chart type="pie" model="#{graficoVendedoresBean.pieModel}"
+			style="width:400px;height:300px; margin-top:25px;" extender="ext"/>
 
 
 	</ui:define>
+
+
 
 
 </ui:composition>
