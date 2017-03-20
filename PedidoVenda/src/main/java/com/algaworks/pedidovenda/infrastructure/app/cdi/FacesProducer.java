@@ -22,11 +22,11 @@ public class FacesProducer {
 	}
 
 	// JAVA EE 7 - Já possui um produtor para o Request
-	@Produces
+/*	@Produces
 	@RequestScoped
 	public HttpServletRequest getHttpServletRequest() {
 		return ((HttpServletRequest) getExternalContext().getRequest());
-	}
+	}*/
 
 	@Produces
 	@RequestScoped

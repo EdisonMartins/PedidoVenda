@@ -70,7 +70,9 @@ public class PedidoDAO extends GenericDAO<Pedido> {
 
 	private Criteria criarCriteriaParaFiltro(PedidoFilter filtro) {
 
-		Session session = this.entityManager.unwrap(Session.class);
+		//Session session = this.entityManager.unwrap(Session.class);
+		
+		Session session = (Session) this.entityManager.getDelegate(); 
 		Criteria criteria = session.createCriteria(Pedido.class);
   
 		if (filtro.getNumeroDe() != null) {
@@ -119,6 +121,7 @@ public class PedidoDAO extends GenericDAO<Pedido> {
 	@SuppressWarnings({ "unchecked" })
 	public Map<Date, BigDecimal> valoresTotaisPorData(Integer numeroDeDias, Usuario criadoPor) {
 		Session session = this.getEntityManager().unwrap(Session.class);
+		//Session session = (Session) this.getEntityManager().getDelegate(); 
 		
 		numeroDeDias -= 1;
 		

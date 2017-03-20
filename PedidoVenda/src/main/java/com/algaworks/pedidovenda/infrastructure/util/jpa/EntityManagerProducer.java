@@ -1,7 +1,7 @@
 package com.algaworks.pedidovenda.infrastructure.util.jpa;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
@@ -19,7 +19,8 @@ public class EntityManagerProducer {
 	}
 
 	@Produces
-	@RequestScoped
+	@Dependent
+	//@RequestScoped
 	public EntityManager createEntityManager() {
 		System.out.println("Fornecendo EntityManager...");
 		return factory.createEntityManager();

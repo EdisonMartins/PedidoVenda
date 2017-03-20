@@ -2,9 +2,9 @@
   xmlns:beans="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
            http://www.springframework.org/schema/security
-           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     
     <beans:bean id="appUserDetailsService" class="com.algaworks.pedidovenda.security.AppUserDetailsService" />
     
@@ -13,15 +13,20 @@
 	    <beans:property name="authenticationEntryPoint" ref="authenticationEntryPoint"/>
 	</beans:bean>
 	
+	
 	<beans:bean id="jsfAccessDeniedHandler" class="com.algaworks.pedidovenda.security.JsfAccessDeniedHandler">
 	    <beans:property name="loginPath" value="/AcessoNegado.xhtml" />
 	    <beans:property name="contextRelative" value="true" />
 	</beans:bean>
 	
+	
+	
 	<beans:bean id="authenticationEntryPoint" class="com.algaworks.pedidovenda.security.JsfLoginUrlAuthenticationEntryPoint">
 	    <beans:property name="loginFormUrl" value="/Login.xhtml"/>
 	    <beans:property name="redirectStrategy" ref="jsfRedirectStrategy" />
 	</beans:bean>
+	
+	
 	
 	<beans:bean id="jsfRedirectStrategy" class="com.algaworks.pedidovenda.security.JsfRedirectStrategy"/>
     
@@ -38,6 +43,8 @@
 		<intercept-url pattern="/pedidos/**" access="hasAnyRole('VENDEDORES', 'AUXILIARES', 'ADMINISTRADORES')" />
 		<intercept-url pattern="/produtos/**" access="hasAnyRole('ADMINISTRADORES')" />
 		<intercept-url pattern="/relatorios/**" access="hasAnyRole('VENDEDORES', 'AUXILIARES', 'ADMINISTRADORES')" />
+		<intercept-url pattern="/clientes/**" access="hasAnyRole('VENDEDORES', 'AUXILIARES', 'ADMINISTRADORES')" />
+		<intercept-url pattern="/usuarios/**" access="hasAnyRole('VENDEDORES', 'AUXILIARES', 'ADMINISTRADORES')" />
 		<intercept-url pattern="/**" access="denyAll" />
 		
 		<form-login login-page="/Login.xhtml" authentication-failure-url="/Login.xhtml?invalid=true" 
