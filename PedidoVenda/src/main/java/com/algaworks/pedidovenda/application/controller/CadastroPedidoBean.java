@@ -21,7 +21,7 @@ import com.algaworks.pedidovenda.domain.model.Pedido;
 import com.algaworks.pedidovenda.domain.model.Produto;
 import com.algaworks.pedidovenda.domain.model.Usuario;
 import com.algaworks.pedidovenda.domain.model.enums.FormaPagamento;
-import com.algaworks.pedidovenda.domain.model.repository.ClienteRepository;
+import com.algaworks.pedidovenda.domain.model.repository.Clientes;
 import com.algaworks.pedidovenda.domain.model.repository.ProdutoRepository;
 import com.algaworks.pedidovenda.domain.model.repository.Usuarios;
 import com.algaworks.pedidovenda.domain.model.validation.SKU;
@@ -49,7 +49,7 @@ public class CadastroPedidoBean implements Serializable {
 	private Usuarios usuarioRep;
 
 	@Inject
-	private ClienteRepository clienteRep;
+	private Clientes clienteRep;
 
 	@Inject
 	private CadastroPedidoService cadastroPedidoService;

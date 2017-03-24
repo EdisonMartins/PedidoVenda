@@ -18,7 +18,7 @@ import org.hibernate.criterion.Restrictions;
 import com.algaworks.pedidovenda.domain.model.Cliente;
 import com.algaworks.pedidovenda.domain.model.repository.dto.ClienteFilter;
 
-public class ClienteRepositoryImpl implements Serializable, ClienteRepository {
+public class ClienteRepositoryImpl implements Serializable, Clientes {
 
 	/**
 	 * 

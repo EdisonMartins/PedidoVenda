@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 
 import com.algaworks.pedidovenda.domain.model.Cliente;
 import com.algaworks.pedidovenda.domain.model.Endereco;
-import com.algaworks.pedidovenda.domain.model.repository.ClienteRepository;
+import com.algaworks.pedidovenda.domain.model.repository.Clientes;
 import com.algaworks.pedidovenda.domain.service.exception.NegocioExceptionImpl;
 
 public class ClienteServiceImpl implements Serializable, ClienteService {
@@ -19,7 +19,7 @@ public class ClienteServiceImpl implements Serializable, ClienteService {
 	
 	
 	@Inject
-	private ClienteRepository clientes;
+	private Clientes clientes;
 	
 	
 	@Transactional

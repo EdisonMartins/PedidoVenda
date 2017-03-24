@@ -5,7 +5,7 @@ import java.util.List;
 import com.algaworks.pedidovenda.domain.model.Cliente;
 import com.algaworks.pedidovenda.domain.model.repository.dto.ClienteFilter;
 
-public interface ClienteRepository extends GenericRepository<Cliente> {
+public interface Clientes extends GenericRepository<Cliente> {
 	public Cliente guardar(Cliente cliente);
 	public Cliente porEmail(String email);
 	public List<Cliente> filtrados(ClienteFilter filtro);
