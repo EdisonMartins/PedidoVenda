@@ -12,7 +12,7 @@
 </h:head>
 <h:body>
 
-	<h:form>
+	<h:form style="padding: 10px 8px;">
     	<div style="margin-top: 5px">
     		<p:inputText id="nome" size="40" value="#{selecaoClienteBean.nome}" placeholder="Nome do cliente" />
     		<p:spacer width="10px"/>
@@ -30,7 +30,10 @@
     			<h:outputText value="#{cliente.nome}" />
     		</p:column>
     		<p:column style="width: 30px; text-align: center">
-    			<p:commandButton icon="ui-icon-check" title="Selecionar" />
+    			<p:commandButton icon="ui-icon-check" 
+    							 title="Selecionar"
+    					   		 process="@this" 
+    					   		 action="#{selecaoClienteBean.selecionar(cliente)}" />
     		</p:column>
     	</p:dataTable>
 	</h:form>

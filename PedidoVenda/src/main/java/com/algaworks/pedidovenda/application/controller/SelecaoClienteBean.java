@@ -29,6 +29,10 @@ public class SelecaoClienteBean implements Serializable {
 	public void pesquisar() {
 		clientesFiltrados = clientes.porNome(nome);
 	}
+	
+	public void selecionar(Cliente cliente) {
+		RequestContext.getCurrentInstance().closeDialog(cliente);
+	}
 
 	public void abrirDialogo() {
 		Map<String, Object> opcoes = new HashMap<>();

@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.SelectEvent;
 
 import com.algaworks.pedidovenda.application.controller.annotation.PedidoEdicao;
 import com.algaworks.pedidovenda.application.controller.event.PedidoAlteradoEvent;
@@ -99,7 +100,14 @@ public class CadastroPedidoBean implements Serializable {
 
 		return vendedores;
 	}
-
+	
+	
+	//Métodos
+	public void clienteSelecionado(SelectEvent event) {
+		pedido.setCliente((Cliente) event.getObject());
+	}
+	
+	
 	private void limpar() {
 		System.out.println("limpar()");
 		pedido = new Pedido();
