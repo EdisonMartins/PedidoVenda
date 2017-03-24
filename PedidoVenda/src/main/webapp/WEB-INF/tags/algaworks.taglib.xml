@@ -10,7 +10,7 @@
 		<description>Valida se e-mail não está em blacklist de domínios.</description>
 		<tag-name>validateEmailBlacklist</tag-name>
 		<validator>
-			<validator-id>com.algaworks.EmailBlacklist</validator-id>
+			<validator-id>com.algaworks.pedidovenda.application.validator.EmailBlacklistValidator</validator-id>
 		</validator>
 		<attribute>
 			<description>Domínios na blacklist (separados por vírgula).</description>

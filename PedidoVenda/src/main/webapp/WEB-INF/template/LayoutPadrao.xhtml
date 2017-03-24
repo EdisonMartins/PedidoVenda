@@ -10,6 +10,7 @@
 	<title><ui:insert name="titulo">Sistemas de Pedido de Vendas</ui:insert></title>
 	<h:outputStylesheet library="css" name="sistema.css"></h:outputStylesheet>
 	<h:outputScript library="js" name="jquery.maskmoney.js" />
+	<h:outputScript name="validadores.js" />
 </h:head>
 <h:body>
 	<p:ajaxStatus styleClass="ajax-status" onsuccess="configurarMoeda();">
@@ -20,6 +21,8 @@
 			<h:outputText value="" />
 		</f:facet>
 	</p:ajaxStatus>
+	
+
 
 
 
@@ -104,6 +107,10 @@
 
 
 	</p:confirmDialog>
+	
+	
+	<ui:insert name="js" />
+	
 
 
 

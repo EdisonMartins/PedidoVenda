@@ -19,12 +19,12 @@
 		</f:metadata>
 
 
-		<h:form>
+		<h:form prependId="false">
 
 			<h1>#{cadastroProdutoBean.editando ? 'Edição de produto' : 'Novo
 				produto'}</h1>
 
-			<p:messages autoUpdate="true" closable="true" />
+			<p:messages id="messageId" autoUpdate="true" closable="true"/>
 
 			<p:toolbar style="margin-top: 20px;">
 				<p:toolbarGroup>
@@ -95,6 +95,13 @@
 
 	</ui:define>
 
+	<ui:define name="js">
+		<script>
+	$(document).ready(function(){
+		$('messageId').append('ffsdfsfwefwe')
+	});
 
+</script>
+	</ui:define>
 </ui:composition>
 

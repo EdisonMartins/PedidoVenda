@@ -39,12 +39,12 @@ public class EmailBlacklistValidator implements Validator, ClientValidator {
 	@Override
 	public Map<String, Object> getMetadata() {
 		Map<String, Object> data = new HashMap<String, Object>();
-
+/*
 		if (getDominios() != null) {
 			data.put("data-dominios", getDominios());
 		}
-
-		return data;
+*/
+		return null;
 	}
 
 	@Override
