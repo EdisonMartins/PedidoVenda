@@ -207,6 +207,14 @@
 			<version>2.2</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<!-- Usado para geração de arquivos Excel -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.11</version>
+		    <scope>compile</scope>
+		</dependency>
 
 
 		<!-- JasperReports -->

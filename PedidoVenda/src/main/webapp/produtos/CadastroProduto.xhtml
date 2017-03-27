@@ -18,8 +18,11 @@
 				type="preRenderView" />
 		</f:metadata>
 
+		
 
-		<h:form prependId="false">
+		<h:form id="frm">
+			<p:focus for=":frm:nome"/>
+		
 
 			<h1>#{cadastroProdutoBean.editando ? 'Edição de produto' : 'Novo
 				produto'}</h1>
@@ -88,8 +91,6 @@
 				<p:outputLabel value="Estoque" for="estoque" />
 				<p:inputText id="estoque" size="10" maxlength="5"
 					value="#{cadastroProdutoBean.produto.quantidadeEstoque}" />
-
-
 			</p:panelGrid>
 		</h:form>
 

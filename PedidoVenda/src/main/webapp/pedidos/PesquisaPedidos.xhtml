@@ -29,6 +29,15 @@
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
+
+					<p:commandButton value="Exportar para XLS" 
+									 ajax="false"
+							  		 disabled="#{empty pesquisaPedidosBean.pedidosFiltrados}">
+						<p:dataExporter type="xls" 
+										target="pedidosTable"
+										fileName="pedidos"
+										postProcessor="#{pesquisaPedidosBean.posProcessarXls}" />
+					</p:commandButton>
 					<p:button value="Novo" outcome="/pedidos/CadastroPedido" />
 
 				</p:toolbarGroup>
@@ -93,8 +102,8 @@
 				paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
 
-				<p:column headerText="Número" style="text-align:center;" sortBy="#{pedido.id}"
-					width="100px">
+				<p:column headerText="Número" style="text-align:center;"
+					sortBy="#{pedido.id}" width="100px">
 					<h:outputText value="#{pedido.id}" />
 
 				</p:column>
@@ -110,31 +119,33 @@
 
 				</p:column>
 
-				<p:column headerText="Data de criação" style="text-align:center;" sortBy="#{pedido.dataCriacao}"
-					width="140px">
-					<h:outputText value="#{pedido.dataCriacao}" >
-						<f:convertDateTime pattern="dd/MM/yyyy"/>
+				<p:column headerText="Data de criação" style="text-align:center;"
+					sortBy="#{pedido.dataCriacao}" width="140px">
+					<h:outputText value="#{pedido.dataCriacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 
 				</p:column>
 
 
-				<p:column headerText="Valor Total" style="text-align:right;" sortBy="#{pedido.valorTotal}"
-					width="120px">
-					<h:outputText value="#{pedido.valorTotal}" >
-						<f:convertNumber type="currency"/>
+				<p:column headerText="Valor Total" style="text-align:right;"
+					sortBy="#{pedido.valorTotal}" width="120px">
+					<h:outputText value="#{pedido.valorTotal}">
+						<f:convertNumber type="currency" />
 					</h:outputText>
 
 				</p:column>
 
-				<p:column headerText="Status" width="100px" sortBy="#{pedido.status}">
+				<p:column headerText="Status" width="100px"
+					sortBy="#{pedido.status}">
 					<h:outputText value="#{pedido.status.descricao}" />
 
 				</p:column>
 
-				<p:column style="text-align:center;" width="50px">
-					<p:button icon="ui-icon-pencil" title="Editar" outcome="/pedidos/CadastroPedido" >
-						<f:param name="pedido" value="#{pedido.id}"/>
+				<p:column style="text-align:center;" width="50px" exportable="false">
+					<p:button icon="ui-icon-pencil" title="Editar"
+						outcome="/pedidos/CadastroPedido">
+						<f:param name="pedido" value="#{pedido.id}" />
 					</p:button>
 
 				</p:column>

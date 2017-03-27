@@ -23,6 +23,8 @@ public class LazyPedidoDataModel extends LazyDataModel<Pedido> {
 	private List<Pedido> lista;
 
 	private Pedidos pedidoRep;
+	
+	private int quantidadeFiltrados;
 
 	public LazyPedidoDataModel(Pedidos pedidoRep, PedidoFilter filtro) {
 		this.pedidoRep = pedidoRep;
@@ -52,6 +54,7 @@ public class LazyPedidoDataModel extends LazyDataModel<Pedido> {
 		setRowCount(pedidoRep.getQuantidadeFiltrados(filtro));
 
 		this.lista = pedidoRep.filtrados(filtro);
+		quantidadeFiltrados = this.lista.size();
 		
 		
 		System.out.println("Filtro: " + filtro);
@@ -59,4 +62,14 @@ public class LazyPedidoDataModel extends LazyDataModel<Pedido> {
 		return this.lista;
 	}
 
+	public int getQuantidadeFiltrados() {
+		return quantidadeFiltrados;
+	}
+
+	public List<Pedido> getLista() {
+		return lista;
+	}
+	
+	
+	
 }

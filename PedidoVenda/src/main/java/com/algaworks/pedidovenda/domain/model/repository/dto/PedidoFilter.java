@@ -94,6 +94,8 @@ public class PedidoFilter extends FiltroDataTable {
 	}
 	
 	
+	
+	
 	@Override
 	public String toString() {
 		SimpleDateFormat SDF = new SimpleDateFormat(
