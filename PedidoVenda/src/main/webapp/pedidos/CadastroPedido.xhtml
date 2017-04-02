@@ -12,8 +12,7 @@
 
 		<f:metadata>
 			<o:viewParam name="pedido" value="#{cadastroPedidoBean.pedido}" converter="#{pedidoConverter}" />
-			<f:event listener="#{cadastroPedidoBean.inicializar}"
-				type="preRenderView" />
+		<f:viewAction action="#{cadastroPedidoBean.inicializar}" />
 		</f:metadata>
 		<h:form id="frmCadastro">
 

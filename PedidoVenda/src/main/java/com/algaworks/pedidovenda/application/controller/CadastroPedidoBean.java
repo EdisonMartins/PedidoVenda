@@ -37,9 +37,8 @@ public class CadastroPedidoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Permite que outro bean seja injetado com este pedido.
-	 * Compartilha essa variável com outro bean
-     * Ver {@link EmissaoPedidoBean}
+	 * Permite que outro bean seja injetado com este pedido. Compartilha essa
+	 * variável com outro bean Ver {@link EmissaoPedidoBean}
 	 */
 	@Produces
 	@PedidoEdicao
@@ -70,18 +69,13 @@ public class CadastroPedidoBean implements Serializable {
 	}
 
 	public void inicializar() {
-		System.out.println("Inicializar!!!");
+		System.out.println("isNotPostBack(");
+		vendedores = usuarioRep.getVendedores();
+		this.pedido.adicionarItemVazio();
 
-
-		if (FacesUtil.isNotPostBack()) {
-			System.out.println("isNotPostBack(");
-			vendedores = usuarioRep.getVendedores();
-			this.pedido.adicionarItemVazio();
-
-			// Chama este método aqui, pois aqui o entityManager ainda está
-			// aberto.
-			this.recalcularPedido();
-		}
+		// Chama este método aqui, pois aqui o entityManager ainda está
+		// aberto.
+		this.recalcularPedido();
 
 		System.out.println("Items Dps" + pedido.getItens());
 	}
@@ -99,23 +93,20 @@ public class CadastroPedidoBean implements Serializable {
 
 		return vendedores;
 	}
-	
-	
-	//Métodos
+
+	// Métodos
 	public void clienteSelecionado(SelectEvent event) {
 		pedido.setCliente((Cliente) event.getObject());
 	}
-	
-	
+
 	private void limpar() {
 		System.out.println("limpar()");
 		pedido = new Pedido();
 
 		pedido.setEnderecoEntrega(new EnderecoEntrega());
 	}
-	
-	
-	public void pedidoAlterado(@Observes PedidoAlteradoEvent event){
+
+	public void pedidoAlterado(@Observes PedidoAlteradoEvent event) {
 		this.pedido = event.getPedido();
 	}
 
