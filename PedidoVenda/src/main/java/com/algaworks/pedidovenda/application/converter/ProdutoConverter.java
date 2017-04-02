@@ -10,6 +10,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.algaworks.pedidovenda.domain.model.Produto;
 import com.algaworks.pedidovenda.domain.model.repository.ProdutoRepositoryImpl;
 
@@ -23,35 +25,23 @@ public class ProdutoConverter implements Converter, Serializable {
 	private ProdutoRepositoryImpl produtos;
 
 	@Override
-	public Object getAsObject(FacesContext context, UIComponent component, String produtoString) {
-		System.out.println("ProdutoConverter: produtoString: " + produtoString);
-		
+	public Object getAsObject(FacesContext context, UIComponent component, String produtoString) {	
 		Produto retorno = null;
-		
-
-		if (produtoString != null && !produtoString.isEmpty()) {
+		if (StringUtils.isNotEmpty(produtoString)) {
 			return produtos.porId(Long.parseLong(produtoString));
 
 		}
-		
-		
 		return retorno; 
-		
-
-
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-
 		if (value != null && value instanceof Produto && value != "") {
 			Produto produto = (Produto) value;
 			return produto.getId() == null ? null : produto.getId().toString();
 
 		}
-
 		return "";
 
 	}
-
 }

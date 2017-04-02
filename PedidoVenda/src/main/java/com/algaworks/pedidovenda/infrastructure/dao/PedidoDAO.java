@@ -52,10 +52,6 @@ public class PedidoDAO extends GenericDAO<Pedido> {
 		criteria.setFirstResult(filtro.getPrimeiroRegistro());
 		criteria.setMaxResults(filtro.getQuantidadeRegistro());
 
-		// Join com cliente
-		criteria.createAlias("cliente", "c");
-		// Join com vendedor
-		criteria.createAlias("vendedor", "v");
 
 		if (filtro.isAscendente() && filtro.getPropriedadeOrdenacao() != null) {
 
@@ -74,6 +70,13 @@ public class PedidoDAO extends GenericDAO<Pedido> {
 		
 		Session session = (Session) this.entityManager.getDelegate(); 
 		Criteria criteria = session.createCriteria(Pedido.class);
+		
+		// Join com cliente
+		criteria.createAlias("cliente", "c");
+		// Join com vendedor
+		criteria.createAlias("vendedor", "v");
+
+		
   
 		if (filtro.getNumeroDe() != null) {
 			// Id deve ser maior ou igual (ge = greater or equals)

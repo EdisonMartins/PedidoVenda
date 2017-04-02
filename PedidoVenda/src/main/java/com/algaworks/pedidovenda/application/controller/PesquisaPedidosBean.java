@@ -13,8 +13,6 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.primefaces.model.SortOrder;
-import org.springframework.security.access.method.P;
 
 import com.algaworks.pedidovenda.application.controller.component.LazyPedidoDataModel;
 import com.algaworks.pedidovenda.application.util.jsf.FacesUtil;
@@ -33,7 +31,6 @@ public class PesquisaPedidosBean implements Serializable {
 	private static final long serialVersionUID = -3764745591012623625L;
 	private PedidoFilter filtro;
 	private LazyPedidoDataModel model;
-	private List<Pedido> pedidos;
 	
 	@Inject
 	private Pedidos pedidoRep;
@@ -50,6 +47,8 @@ public class PesquisaPedidosBean implements Serializable {
 		
 	}
 
+			
+
 	public LazyPedidoDataModel getModel() {
 		
 		return model;
@@ -57,19 +56,6 @@ public class PesquisaPedidosBean implements Serializable {
 
 	public PedidoFilter getFiltro() {
 		return filtro;
-	}
-	
-	public List<Pedido> getPedidosFiltrados() {
-		
-		if(pedidos == null){
-			PedidoFilter filtro = new PedidoFilter();
-			filtro.setPrimeiroRegistro(0);
-			filtro.setQuantidadeRegistro(Integer.MAX_VALUE);
-			pedidos = this.pedidoRep.filtrados(filtro);
-		}
-		
-		
-		return pedidos;
 	}
 	
 	

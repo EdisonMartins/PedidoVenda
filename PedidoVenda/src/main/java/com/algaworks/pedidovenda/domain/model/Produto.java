@@ -117,6 +117,7 @@ public class Produto implements Serializable {
 		this.categoria = categoria;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import com.algaworks.pedidovenda.domain.model.Produto;
+import com.algaworks.pedidovenda.domain.model.repository.ProdutoRepository;
 import com.algaworks.pedidovenda.domain.service.exception.NegocioExceptionImpl;
 import com.algaworks.pedidovenda.infrastructure.dao.ProdutoDAO;
 
@@ -14,20 +15,20 @@ public class CadastroProdutoServiceImpl implements Serializable, CadastroProduto
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private ProdutoDAO produtoDAO;
+	private ProdutoRepository produtos;
 
 	
 	@Transactional
 	@Override
 	public Produto salvar(Produto produto) {
-		Produto produdoExistente = produtoDAO.getProdutoPor(produto.getSku());
+		Produto produdoExistente = produtos.porSku(produto.getSku());
 
 		//Validação que permite editar um determinado produto.
 		if (produdoExistente != null && !produdoExistente.equals(produto)) {
 			throw new NegocioExceptionImpl("Já existe um produto com o SKU informado.");
 		}
 
-		return produtoDAO.merge(produto);
+		return produtos.salva(produto);
 	}
 	
 	
@@ -35,8 +36,8 @@ public class CadastroProdutoServiceImpl implements Serializable, CadastroProduto
 	@Override
 	public void remover(Produto produto) {
 		try {
-			produto = produtoDAO.findById(produto.getId());
-			produtoDAO.deleteAndFlush(produto.getId());
+			produto = produtos.porId(produto.getId());
+			produtos.deleteAndFlush(produto.getId());
 			// Chamando flush para excluir imediatamente o produto e se ele
 			// estiver sendo
 			// usado por Pedido, o flush() irá lançar um exceção neste momento e

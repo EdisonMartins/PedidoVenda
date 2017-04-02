@@ -13,4 +13,8 @@ public interface ProdutoRepository extends GenericRepository<Produto> {
 
 	public List<Produto> porNome(String nome);
 
+	public Produto salva(Produto produto);
+
+	public void deleteAndFlush(Long id);
+
 }

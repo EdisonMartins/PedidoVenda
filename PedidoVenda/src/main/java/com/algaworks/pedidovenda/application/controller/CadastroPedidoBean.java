@@ -72,7 +72,6 @@ public class CadastroPedidoBean implements Serializable {
 	public void inicializar() {
 		System.out.println("Inicializar!!!");
 
-		System.out.println("Items" + pedido.getItens());
 
 		if (FacesUtil.isNotPostBack()) {
 			System.out.println("isNotPostBack(");

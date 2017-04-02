@@ -29,36 +29,20 @@ public class LazyPedidoDataModel extends LazyDataModel<Pedido> {
 	public LazyPedidoDataModel(Pedidos pedidoRep, PedidoFilter filtro) {
 		this.pedidoRep = pedidoRep;
 		this.filtro = filtro;
-
 	}
+
+
 
 	@Override
 	public List<Pedido> load(int first, int pageSize, String sortField, SortOrder sortOrder,
 			Map<String, Object> filters) {
-		System.out.println("First: " + first);
-		System.out.println("PageSize " + pageSize);
-		System.out.println("SortField: " + sortField);
-		System.out.println("SortOrder: " + sortOrder);
-		
-		System.out.println("pedidoRep: " + this.pedidoRep);
-
 		filtro.setPrimeiroRegistro(first);
 		filtro.setQuantidadeRegistro(pageSize);
-
 		filtro.setAscendente(SortOrder.ASCENDING.equals(sortOrder));
-		filtro.setPropriedadeOrdenacao(sortField);
-		
-		
-		
-
+		filtro.setPropriedadeOrdenacao(sortField);		
 		setRowCount(pedidoRep.getQuantidadeFiltrados(filtro));
-
 		this.lista = pedidoRep.filtrados(filtro);
-		quantidadeFiltrados = this.lista.size();
-		
-		
-		System.out.println("Filtro: " + filtro);
- 
+		quantidadeFiltrados = this.lista.size(); 
 		return this.lista;
 	}
 
@@ -69,6 +53,18 @@ public class LazyPedidoDataModel extends LazyDataModel<Pedido> {
 	public List<Pedido> getLista() {
 		return lista;
 	}
+
+	public boolean isEmpty() {
+		int quantidade = pedidoRep.getQuantidadeFiltrados(filtro);
+		if(quantidade == 0){
+			return true;
+		} else 
+			return false;
+	}
+
+
+	
+	
 	
 	
 	

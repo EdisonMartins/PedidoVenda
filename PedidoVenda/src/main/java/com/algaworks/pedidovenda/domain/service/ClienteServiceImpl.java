@@ -22,8 +22,8 @@ public class ClienteServiceImpl implements Serializable, ClienteService {
 	private Clientes clientes;
 	
 	
-	@Transactional
 	@Override
+	@Transactional
 	public Cliente salvar(Cliente cliente) {
 
 		Cliente clienteExistente = clientes.porEmail(cliente.getEmail());

@@ -130,6 +130,10 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 
 	@Override
 	public int compareTo(Usuario outroUsuario) {
+		if(this.getNome() == null){
+			return -1;
+		}
+		
 		return this.getNome().compareTo(outroUsuario.getNome());
 	}
 

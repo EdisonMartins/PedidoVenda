@@ -6,7 +6,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -17,6 +16,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.algaworks.pedidovenda.domain.model.Cliente;
 import com.algaworks.pedidovenda.domain.model.repository.dto.ClienteFilter;
+import com.algaworks.pedidovenda.infrastructure.util.jpa.Transactional;
 
 public class ClienteRepositoryImpl implements Serializable, Clientes {
 

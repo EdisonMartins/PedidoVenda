@@ -42,5 +42,19 @@ public class ProdutoRepositoryImpl implements Serializable, ProdutoRepository {
 	}
 
 
+	@Override
+	public Produto salva(Produto produto) {
+		produto = produtoDAO.merge(produto);
+		return produto;
+	}
+
+
+	@Override
+	public void deleteAndFlush(Long id) {
+		produtoDAO.deleteAndFlush(id);
+		
+	}
+
+
 
 }

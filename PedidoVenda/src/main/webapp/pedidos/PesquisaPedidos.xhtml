@@ -20,11 +20,18 @@
 		<h:form id="enderecamentoForm" prependId="false">
 
 			<h1>Pesquisa Pedidos</h1>
+						
+			<script>
+				var teste = PrimeFaces.widgets['dataTable'];
+				console.log('Teste >>>', teste.getPaginator().cfg);
+			</script>
 
 
 			<p:toolbar style="margin-top: 20px;">
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" update="@form" />
+					<p:commandButton value="Pesquisar" update="@form">
+						
+					</p:commandButton>
 
 				</p:toolbarGroup>
 
@@ -32,7 +39,7 @@
 
 					<p:commandButton value="Exportar para XLS" 
 									 ajax="false"
-							  		 disabled="#{empty pesquisaPedidosBean.pedidosFiltrados}">
+							  		 disabled="#{pesquisaPedidosBean.model.isEmpty()}">
 						<p:dataExporter type="xls" 
 										target="pedidosTable"
 										fileName="pedidos"
@@ -93,7 +100,7 @@
 			</p:panelGrid>
 
 
-			<p:dataTable id="pedidosTable" value="#{pesquisaPedidosBean.model}"
+			<p:dataTable id="pedidosTable" value="#{pesquisaPedidosBean.model}" widgetVar="dataTable" 
 				var="pedido" lazy="true" style="margin-top:20px;"
 				emptyMessage="Nenhum pedido encontrado." rows="20"
 				rowsPerPageTemplate="20,30,40,50,100,200"
@@ -101,6 +108,8 @@
 				currentPageReportTemplate="Total de {totalRecords} registros - Página: {currentPage} de {totalPages} "
 				paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
+				
+				
 
 				<p:column headerText="Número" style="text-align:center;"
 					sortBy="#{pedido.id}" width="100px">
