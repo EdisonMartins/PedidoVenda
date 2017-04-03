@@ -21,95 +21,26 @@
 			<version>1.0.10</version>
 		</dependency>
 
-
-		<!-- 01 - JSF - Mojarra -->
+		<!-- Usado para geração de arquivos Excel -->
 		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.faces</artifactId>
-			<version>2.2.13</version>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.11</version>
 			<scope>compile</scope>
 		</dependency>
 
 
+		<!-- Implementacao do Bean Validation -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-
-		<!-- 02 - PrimeFaces -->
-		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>6.0</version>
-			<scope>compile</scope>
-		</dependency>
-
-
-		<!-- 2.1 OmniFaces (utilitarios para JSF) -->
-		<dependency>
-			<groupId>org.omnifaces</groupId>
-			<artifactId>omnifaces</artifactId>
-			<version>1.5</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.1.3.Final</version>
 			<scope>compile</scope>
 		</dependency>
 
 
 
-		<!-- 03 - CDI Weld -->
-		<dependency>
-			<groupId>org.jboss.weld.servlet</groupId>
-			<artifactId>weld-servlet</artifactId>
-			<version>2.4.2.Final</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss</groupId>
-			<artifactId>jandex</artifactId>
-			<version>2.0.3.Final</version>
-		</dependency>
-
-
-		<!-- 04 -Prettyfaces for JSF 2.x (URLs amigáveis) -->
-		<dependency>
-			<groupId>org.ocpsoft.rewrite</groupId>
-			<artifactId>rewrite-servlet</artifactId>
-			<version>2.0.12.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.ocpsoft.rewrite</groupId>
-			<artifactId>rewrite-config-prettyfaces</artifactId>
-			<version>2.0.12.Final</version>
-		</dependency>
-
-
-
-		<!-- 05 - Log4j -->
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<!-- 06 - Commons Logging (abstrai a implementação de logging) -->
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.3</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<!-- 07 - Commons Lang (Utilidades) -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
-		</dependency>
-
-
-
-		<!-- 08 - Núcleo do Hibernate -->
+		<!-- Núcleo do Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -118,52 +49,105 @@
 		</dependency>
 
 
-<!-- 	09 - for JPA, use hibernate-entitymanager instead of hibernate-core
-	(deprecated Use Hibernate Core Instead) Hibernate JPA Support -->
-	<dependency>
-		<groupId>org.hibernate</groupId>
-		<artifactId>hibernate-entitymanager</artifactId>
-		<version>4.3.8.Final</version>
-	</dependency>
+		<!-- Implementação de EntityManager da JPA -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.8.Final</version>
+			<scope>compile</scope>
+		</dependency>
 
 
-		<!-- 10 - Driver JDBC do Mysql -->
+		<!-- Pool de conexoes com C3P0 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>4.3.8.Final</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<!-- Driver JDBC do MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.34</version>
+			<scope>compile</scope>
 		</dependency>
 
-		<!-- 11 -BEAN VALIDATION (hibernate-validator) -->
+
+		<!-- Weld (implementação do CDI) -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>5.1.3.Final</version>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+			<version>2.2.9.Final</version>
+			<scope>compile</scope>
 		</dependency>
 
-		<!-- 12 Rest Easy - API RESTfull -->
+
+		<!-- Weld depende do Jandex -->
 		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxrs</artifactId>
-			<version>3.0.10.Final</version>
+			<groupId>org.jboss</groupId>
+			<artifactId>jandex</artifactId>
+			<version>1.2.2.Final</version>
+			<scope>compile</scope>
 		</dependency>
 
+
+		<!-- PrimeFaces (biblioteca de componentes) -->
 		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxb-provider</artifactId>
-			<version>3.0.10.Final</version>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>5.1</version>
+			<scope>compile</scope>
 		</dependency>
 
-		<!-- 13 - API de Servlet - -->
+
+		<!-- Mojarra (implementacao do JSF) -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<!-- Scope provided porque o TOMCAT fornece está API para o projeto -->
-			<scope>provided</scope>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.2.9</version>
+			<scope>compile</scope>
 		</dependency>
 
-		<!-- 14 - Simple-Mail (Maven não reconhece) - -->
+
+		<!-- OmniFaces (utilitarios para JSF) -->
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>2.0</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<!-- Log4J -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<!-- Commons Logging (abstrai a implementação de logging) -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.3</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<!-- Commons Lang (utilidades) -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+
+
+		<!-- Abstração para envio de e-mails -->
 		<dependency>
 			<groupId>com.outjected</groupId>
 			<artifactId>simple-email</artifactId>
@@ -194,6 +178,7 @@
 			<scope>compile</scope>
 		</dependency>
 
+
 		<!-- Spring Security (autenticação e autorização) -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -218,13 +203,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Usado para geração de arquivos Excel -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.11</version>
-			<scope>compile</scope>
-		</dependency>
 
 
 		<!-- JasperReports -->
@@ -235,8 +213,54 @@
 			<scope>compile</scope>
 		</dependency>
 
+
+		<!-- API de Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<!-- Scope provided porque o TOMCAT fornece está API para o projeto -->
+			<scope>provided</scope>
+		</dependency>
+
+
+<!-- 		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency> -->
+
+
+
+		<!-- EXTRAS -->
+		<!-- Prettyfaces for JSF 2.x (URLs amigáveis) -->
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-servlet</artifactId>
+			<version>2.0.12.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-config-prettyfaces</artifactId>
+			<version>2.0.12.Final</version>
+		</dependency>
+
+
+
+		<!-- Rest Easy - API RESTfull -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>3.0.10.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxb-provider</artifactId>
+			<version>3.0.10.Final</version>
+		</dependency>
 	</dependencies>
-	
+
 	<repositories>
 		<repository>
 			<id>prime-repo</id>
