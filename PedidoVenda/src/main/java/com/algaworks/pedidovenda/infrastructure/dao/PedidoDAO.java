@@ -64,11 +64,8 @@ public class PedidoDAO extends GenericDAO<Pedido> {
 		return criteria.list();
 	}
 
-	private Criteria criarCriteriaParaFiltro(PedidoFilter filtro) {
-
-		//Session session = this.entityManager.unwrap(Session.class);
-		
-		Session session = (Session) this.entityManager.getDelegate(); 
+	private Criteria criarCriteriaParaFiltro(PedidoFilter filtro) {		
+		Session session = (Session) entityManager; 
 		Criteria criteria = session.createCriteria(Pedido.class);
 		
 		// Join com cliente
@@ -123,7 +120,7 @@ public class PedidoDAO extends GenericDAO<Pedido> {
 	
 	@SuppressWarnings({ "unchecked" })
 	public Map<Date, BigDecimal> valoresTotaisPorData(Integer numeroDeDias, Usuario criadoPor) {
-		Session session = this.getEntityManager().unwrap(Session.class);
+		Session session = (Session) entityManager;
 		//Session session = (Session) this.getEntityManager().getDelegate(); 
 		
 		numeroDeDias -= 1;
@@ -190,7 +187,7 @@ public class PedidoDAO extends GenericDAO<Pedido> {
 	
 	@SuppressWarnings("unchecked")
 	public List<VendedorValor>  valoresTotaisPorVendedor(){
-		Session session  = this.getEntityManager().unwrap(Session.class);
+		Session session = (Session) entityManager;
 		Criteria criteria = session.createCriteria(Pedido.class);
 		
 		ProjectionList projecoes = Projections.projectionList();

@@ -43,7 +43,7 @@ public class ProdutoDAO extends GenericDAO<Produto> {
 	@SuppressWarnings("unchecked")
 	public List<Produto> filtrados(ProdutoFilter filtro) {
 		// Session do Hibernate
-		Session session = this.entityManager.unwrap(Session.class);
+		Session session = (Session) entityManager;
 		Criteria criteria = session.createCriteria(Produto.class);
 
 		//Restrictions.eq - Valor tem que ser idêntico.

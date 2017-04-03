@@ -6,10 +6,10 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.transaction.Transactional;
 
 import com.algaworks.pedidovenda.domain.model.Grupo;
 import com.algaworks.pedidovenda.domain.service.exception.NegocioExceptionImpl;
+import com.algaworks.pedidovenda.infrastructure.util.jpa.Transactional;
 
 public class GrupoRepositoryImpl implements Serializable, GrupoRepository {
 

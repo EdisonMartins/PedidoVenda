@@ -83,7 +83,7 @@ public class ClienteRepositoryImpl implements Serializable, Clientes {
 
 	private Criteria criarCriteriaPara(ClienteFilter filtro) {
 
-		Session session = manager.unwrap(Session.class);
+		Session session = (Session) manager;
 		Criteria criteria = session.createCriteria(Cliente.class);
 
 		System.out.println("Nome filtrado: " + filtro.getNome());

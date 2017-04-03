@@ -294,7 +294,7 @@ public class GenericDAO<T> implements Serializable {
 	 * @return Quantidade total de registros.
 	 */
 	public int getQuantidadeTotalDeRegistros(){
-		Session session = this.getEntityManager().unwrap(Session.class);
+		Session session = (Session) entityManager;
 		
 		Criteria criteria = session.createCriteria(classe);
 		criteria.setProjection(Projections.rowCount());

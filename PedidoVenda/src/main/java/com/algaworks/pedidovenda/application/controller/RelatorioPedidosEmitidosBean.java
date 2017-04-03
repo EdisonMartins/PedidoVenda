@@ -45,7 +45,7 @@ public class RelatorioPedidosEmitidosBean implements Serializable {
 		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/relatorio_pedidos_emitidos.jasper",
 				this.response, parametros, "Pedidos emitidos.pdf");
 		
-		Session session = manager.unwrap(Session.class);
+		Session session = (Session) manager;
 		
 		//O Relatório realiza uma consulta sql, por este motivo usa-se o doWork
 		session.doWork(executor);

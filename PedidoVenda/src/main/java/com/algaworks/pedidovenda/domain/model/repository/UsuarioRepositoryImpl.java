@@ -101,7 +101,7 @@ public class UsuarioRepositoryImpl implements Serializable, Usuarios {
 
 	private Criteria criarCriteriaPara(UsuarioFilter filtro) {
 
-		Session session = manager.unwrap(Session.class);
+		Session session = (Session) manager;
 		Criteria criteria = session.createCriteria(Usuario.class);
 
 		System.out.println("Nome filtrado: " + filtro.getNome());
@@ -115,7 +115,7 @@ public class UsuarioRepositoryImpl implements Serializable, Usuarios {
 
 	@Override
 	public int calculaQuantidadeDeUsuarios() {
-		Session session = manager.unwrap(Session.class);
+		Session session = (Session) manager;
 		Criteria criteria = session.createCriteria(Usuario.class);
 		criteria.setProjection(Projections.rowCount());
 		return ((Number) criteria.uniqueResult()).intValue();

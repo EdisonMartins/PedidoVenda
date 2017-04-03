@@ -3,12 +3,12 @@ package com.algaworks.pedidovenda.domain.service;
 import java.io.Serializable;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 import com.algaworks.pedidovenda.domain.model.Cliente;
 import com.algaworks.pedidovenda.domain.model.Endereco;
 import com.algaworks.pedidovenda.domain.model.repository.Clientes;
 import com.algaworks.pedidovenda.domain.service.exception.NegocioExceptionImpl;
+import com.algaworks.pedidovenda.infrastructure.util.jpa.Transactional;
 
 public class ClienteServiceImpl implements Serializable, ClienteService {
 

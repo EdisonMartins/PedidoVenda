@@ -3,12 +3,11 @@ package com.algaworks.pedidovenda.domain.service;
 import java.io.Serializable;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 import com.algaworks.pedidovenda.domain.model.Produto;
 import com.algaworks.pedidovenda.domain.model.repository.ProdutoRepository;
 import com.algaworks.pedidovenda.domain.service.exception.NegocioExceptionImpl;
-import com.algaworks.pedidovenda.infrastructure.dao.ProdutoDAO;
+import com.algaworks.pedidovenda.infrastructure.util.jpa.Transactional;
 
 public class CadastroProdutoServiceImpl implements Serializable, CadastroProdutoService {
 

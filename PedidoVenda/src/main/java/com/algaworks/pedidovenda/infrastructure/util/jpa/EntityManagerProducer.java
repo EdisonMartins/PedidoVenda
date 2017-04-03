@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.hibernate.Session;
+
 @ApplicationScoped
 public class EntityManagerProducer {
 
@@ -21,12 +23,12 @@ public class EntityManagerProducer {
 	@Produces
 	//@Dependent (Gera erro - Commit não era executado)
 	@RequestScoped
-	public EntityManager createEntityManager() {
+	public Session createEntityManager() {
 		System.out.println("Fornecendo EntityManager...");
-		return factory.createEntityManager();
+		return (Session) factory.createEntityManager();
 	}
 
-	public void closeEntityManager(@Disposes EntityManager manager) {
+	public void closeEntityManager(@Disposes Session manager) {
 		manager.close();
 		System.out.println("Fechando EntityManager...");
 	}

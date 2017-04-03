@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 
 import com.algaworks.pedidovenda.domain.model.Categoria;
@@ -26,7 +25,7 @@ public class TestaCriteria {
 
 		EntityManager em = JPAUtil.createEntityManager();
 
-		Session session = em.unwrap(Session.class);
+		Session session = (Session) em;
 		Criteria criteria = session.createCriteria(Produto.class);
 
 		//Lista de projeções

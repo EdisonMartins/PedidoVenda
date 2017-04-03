@@ -3,12 +3,12 @@ package com.algaworks.pedidovenda.domain.service;
 import java.io.Serializable;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 import com.algaworks.pedidovenda.domain.model.Pedido;
 import com.algaworks.pedidovenda.domain.model.StatusPedido;
 import com.algaworks.pedidovenda.domain.service.exception.NegocioExceptionImpl;
 import com.algaworks.pedidovenda.infrastructure.dao.PedidoDAO;
+import com.algaworks.pedidovenda.infrastructure.util.jpa.Transactional;
 
 public class EmissaoPedidoServiceImpl implements EmissaoPedidoService, Serializable {
 

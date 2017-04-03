@@ -5,11 +5,11 @@ import java.util.Date;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 import com.algaworks.pedidovenda.domain.model.Pedido;
 import com.algaworks.pedidovenda.domain.model.StatusPedido;
 import com.algaworks.pedidovenda.domain.service.exception.NegocioExceptionImpl;
+import com.algaworks.pedidovenda.infrastructure.util.jpa.Transactional;
 
 public class CadastroPedidoServiceImpl implements Serializable, CadastroPedidoService {
 
