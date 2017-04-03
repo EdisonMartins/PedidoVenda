@@ -1,5 +1,5 @@
 /*
-s * Copyright 2004-2012 ICEsoft Technologies Canada Corp.
+ * Copyright 2004-2012 ICEsoft Technologies Canada Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the
@@ -16,15 +16,14 @@ s * Copyright 2004-2012 ICEsoft Technologies Canada Corp.
 
 package com.algaworks.pedidovenda.security;
 
-import java.io.IOException;
-import java.nio.file.AccessDeniedException;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.util.UrlUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.security.web.util.UrlUtils;
+import java.io.IOException;
 
 /**
  * This class represents...
@@ -61,7 +60,7 @@ public class JsfAccessDeniedHandler implements AccessDeniedHandler {
 
     private String calculateRedirectUrl(String contextPath, String url) {
         if (!UrlUtils.isAbsoluteUrl(url)) {
-            if (contextRelative) {
+            if (!contextRelative) {
                 return url;
             } else {
                 return contextPath + url;
@@ -100,12 +99,4 @@ public class JsfAccessDeniedHandler implements AccessDeniedHandler {
     public void setLoginPath(String loginPath) {
         this.loginPath = loginPath;
     }
-
-	@Override
-	public void handle(HttpServletRequest arg0, HttpServletResponse arg1,
-			org.springframework.security.access.AccessDeniedException arg2)
-			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		
-	}
 }
