@@ -9,10 +9,16 @@
 	<title>Seleção de cliente</title>
 	
 	<h:outputStylesheet library="css" name="sistema.css" />
+	<style>
+		body {  
+			margin: 10px;
+		}
+	</style>
+	
 </h:head>
 <h:body>
 
-	<h:form style="padding: 10px 8px;">
+	<h:form>
     	<div style="margin-top: 5px">
     		<p:inputText id="nome" size="40" value="#{selecaoClienteBean.nome}" placeholder="Nome do cliente" />
     		<p:spacer width="10px"/>
