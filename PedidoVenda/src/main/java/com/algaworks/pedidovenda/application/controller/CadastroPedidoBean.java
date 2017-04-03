@@ -69,15 +69,15 @@ public class CadastroPedidoBean implements Serializable {
 	}
 
 	public void inicializar() {
-		System.out.println("isNotPostBack(");
+		if (this.pedido == null) {
+			limpar();
+		}
 		vendedores = usuarioRep.getVendedores();
 		this.pedido.adicionarItemVazio();
 
 		// Chama este método aqui, pois aqui o entityManager ainda está
 		// aberto.
 		this.recalcularPedido();
-
-		System.out.println("Items Dps" + pedido.getItens());
 	}
 
 	// Getters and Setters

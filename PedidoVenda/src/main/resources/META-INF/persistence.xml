@@ -12,7 +12,7 @@
 		<properties>
 
 			<!-- ?autoReconnectForPools=true -> Somente para MySQL -->
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pedido_venda" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pedido_venda?autoReconnectForPools=true" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
